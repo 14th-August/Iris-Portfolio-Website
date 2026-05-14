@@ -1,3 +1,6 @@
+# Iris-Portfolio-Website
+A Freelance SEO website for a makeup artist who I know. The project will also support backend client capabilities and finding clients through postings.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
