@@ -7,7 +7,6 @@ export function Navbar() {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  // Added the resize listener to reset mobile state when returning to full screen
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768 && isOpen) {
@@ -52,8 +51,8 @@ export function Navbar() {
   }
 
   return (
-    <nav className="bg-gray-600 text-black p-4 sm:p-6 md:flex md:justify-between md:items-center">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="bg-gray-600 text-black">
+      <div className="w-full max-w-[1400px] mx-auto flex justify-between items-center py-4 px-6 md:px-12">
         <Link href="/" className="font-[family-name:var(--font-montserrat)] font-extralight uppercase
           tracking-[0.3em] text-xl md:text-xl text-white">
           Iris
