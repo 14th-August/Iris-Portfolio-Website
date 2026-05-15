@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { playfair, zcool } from "./fonts";
+import { zcool, montserrat } from "./fonts";
 import "./globals.css";
 import { Navbar } from "../components/web/Navbar";
 
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${zcool.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${zcool.variable}`}>
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
