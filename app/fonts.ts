@@ -19,7 +19,7 @@ export const zcool = ZCOOL_XiaoWei({
 });
 
 export const montserrat = Montserrat({
-  weight: ['200', '300'],
+  weight: ['400', '500', '600', '700', '800'],
   subsets: ['latin'],
   variable: '--font-montserrat',
 });
