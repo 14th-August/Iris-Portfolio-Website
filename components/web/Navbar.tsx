@@ -41,7 +41,9 @@ export function Navbar() {
         'w-full',
         'p-4',
         'left-0',
-        'gap-10'
+        'gap-10',
+        'z-50',
+        'shadow-lg'
       );
     } else {
       menuClasses.push("hidden");
@@ -53,37 +55,37 @@ export function Navbar() {
   return (
     <nav className="bg-white text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em]">
       <div className="w-full max-w-[1400px] mx-auto flex justify-between items-center py-4 px-6 md:px-12">
-        <Link href="/" className="text-xl md:text-xl">
-          Iris Beauty
+        <Link href="/" className="text-xl md:text-xl whitespace-nowrap flex-shrink-0">
+          Iris Design
             <h6 className="text-xs md:text-xs">
             Hsiang-Ning Yu
             </h6>
         </Link>
         <div className={getMenuClasses()}>
           <Link href="/catalog" className="mx-2 relative group pb-1 
-            mx-2 hover:text-blue-600">
+            mx-2 hover:text-blue-600 active:text-blue-600">
             Catalog
-            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Link>
            <Link href="/portfolio" className="mx-2 relative group pb-1 
-            mx-2 hover:text-blue-600">
+            mx-2 hover:text-blue-600 active:text-blue-600">
             Portfolio
-            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Link>
           <Link href="/about" className="mx-2 relative group pb-1 
-            mx-2 hover:text-blue-600">
+            mx-2 hover:text-blue-600 active:text-blue-600">
             About
-            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Link>
           <Link href="/booking" className="mx-2 relative group pb-1 
-            mx-2 hover:text-blue-600">
+            mx-2 hover:text-blue-600 active:text-blue-600">
             Booking
-            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Link>
           <Link href="/contact" className="mx-2 relative group pb-1 
-            mx-2 hover:text-blue-600">
+            mx-2 hover:text-blue-600 active:text-blue-600">
             Contact
-            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </Link>
         </div>
 
