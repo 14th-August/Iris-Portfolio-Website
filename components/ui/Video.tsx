@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function VideoHero() {
   return (
-      <div className="relative flex items-center justify-center w-full h-[89.5vh] overflow-hidden font-sans">  
+      <div className="relative flex items-center justify-center w-full h-[80vh] overflow-hidden font-sans">  
       <video
         className="absolute top-0 left-0 w-full h-full object-cover -z-20"
         autoPlay
@@ -23,7 +23,7 @@ export default function VideoHero() {
             Make Up Artist  
         </p>
         
-        <Link href="/appointment" className="relative group inline-block z-10 p-2 text-center opacity-50 text-white font-[family-name:var(--font-montserrat)] uppercase tracking-[0.3em] hover:opacity-80">
+        <Link href="/appointment" className="relative group inline-block z-10 p-2 text-center opacity-30 text-white font-[family-name:var(--font-montserrat)] uppercase tracking-[0.3em] hover:opacity-80 transition-opacity duration-200">
                 Set Up An Appointment!
             <span className="absolute left-0 bottom-0 w-full h-[1px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>        
         </Link>
