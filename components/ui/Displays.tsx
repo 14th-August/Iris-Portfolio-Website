@@ -11,30 +11,18 @@ interface ImageDisplayProps {
     images: string[]; // Array of image URLs to display
 }
 export default function Displays({ images }: ImageDisplayProps) {
-    const [emblaRef, emblaApi] = useEmblaCarousel(
-        { loop: true, dragFree: true },
+    const [emblaRef] = useEmblaCarousel(
+        { loop: true, dragFree: true, duration: 20 }, // Embla options
         [
             WheelGesturesPlugin(),
             AutoScroll({ 
-                speed: 1, // Adjust this baseline speed as needed
-                stopOnInteraction: false 
+                speed: 0.5, 
+                startDelay: 0,
+                stopOnInteraction: false, 
+                stopOnMouseEnter: true
             })
         ]
     );
-
-    const onMouseEnter = useCallback(() => {
-        if (!emblaApi) return;
-        const autoScroll = emblaApi.plugins().autoScroll;
-        if (!autoScroll) return;
-        autoScroll.stop();
-    }, [emblaApi]);
-
-    const onMouseLeave = useCallback(() => {
-        if (!emblaApi) return;
-        const autoScroll = emblaApi.plugins().autoScroll;
-        if (!autoScroll) return;
-        autoScroll.play();
-    }, [emblaApi]);
 
     return (
         <>
@@ -55,14 +43,13 @@ export default function Displays({ images }: ImageDisplayProps) {
 
             <div className="w-full mt-0 overflow-hidden opacity-0 animate-fade-in-up [animation-delay:2s]"
                 ref={emblaRef}
-                onMouseEnter={onMouseEnter}
-                onMouseLeave={onMouseLeave}>
+            >
                 <div className="flex gap-6 px-6 pt-2 pb-8">
                     {images.map((src, index) => ( // src => actual image value, index => which image
 
                         <div
                             key={index} // needed so react knows what images to update
-                            className="relative flex-none min-w-0 w-[80vw] md:w-96 aspect-[4/5] overflow-hidden bg-gray-900 group select-none"
+                            className="relative flex-none w-[80vw] md:w-96 aspect-[4/5] group select-none"
                             // keeps the same aspect ratio as instagram. relative flex-none keeps images side by side
                             // and prevents shrinking. overflow-hidden ensures images don't spill out of their container. 
                             // bg-gray-900 is a placeholder background color while images load.
@@ -74,16 +61,14 @@ export default function Displays({ images }: ImageDisplayProps) {
                             object cover ensures the image covers the container without distortion,
                             sizes tells the browser how much space the image will take up, allowing it to choose the right size to load for performance.
                             */}
-
-                            <Image
-                                src={src}
-                                alt={`Featured Look ${index + 1}`}
-                                fill
-                                draggable={false}
-                                className="object-cover cursor-pointer transition-transform duration-700 group-hover:scale-105"
-                                sizes="(max-width: 768px) 100vw, 33vw"
-                            />
-
+                                <Image
+                                    src={src}
+                                    alt={`Featured Look ${index + 1}`}
+                                    fill
+                                    draggable={false}
+                                    className="object-cover cursor-pointer transition-transform duration-700 group-hover:scale-105"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                />
                         </div>
                     ))}
                 </div>
