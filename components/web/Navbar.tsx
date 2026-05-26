@@ -65,17 +65,22 @@ export function Navbar() {
           <Link href="/catalog" className="mx-2 relative group pb-1 
             mx-2 hover:text-blue-600 active:text-blue-600">
             Portfolio
-            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-95 transition-transform duration-300 origin-left"></span>
+          </Link>
+          <Link href="/contact" className="mx-2 relative group pb-1 
+            mx-2 hover:text-blue-600 active:text-blue-600">
+            Shows
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-95 transition-transform duration-300 origin-left"></span>
           </Link>
           <Link href="/about" className="mx-2 relative group pb-1 
             mx-2 hover:text-blue-600 active:text-blue-600">
             About
-            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-95 transition-transform duration-300 origin-left"></span>
           </Link>
           <Link href="/contact" className="mx-2 relative group pb-1 
             mx-2 hover:text-blue-600 active:text-blue-600">
             Contact
-            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute left-0 bottom-0 w-full h-[1px] bg-blue-600 group-active:scale-x-100 scale-x-0 group-hover:scale-x-95 transition-transform duration-300 origin-left"></span>
           </Link>
         </div>
 
