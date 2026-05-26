@@ -24,9 +24,9 @@ export default function Displays({ images }: ImageDisplayProps) {
     );
 
     return (
-        <>
+        <div className="w-full bg-white text-black">
             <div className="p-4.5 text-center font-[family-name:var(--font-montserrat)] uppercase tracking-[0.2em]">
-                <h1 className="relative flex align-center text-white justify-center w-full 
+                <h1 className="relative flex align-center text-black justify-center w-full 
                         text-2xl opacity-0 animate-fade-in-up [animation-delay:1.5s]">
                     Featured Looks
                 </h1>
@@ -73,6 +73,6 @@ export default function Displays({ images }: ImageDisplayProps) {
                     ))}
                 </div>
             </div>
-        </>
+        </div>
     );
 }

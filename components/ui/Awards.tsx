@@ -29,7 +29,7 @@ const DEFAULT_PHOTOS = [
 
 export default function IntroCard({
   images = DEFAULT_PHOTOS,
-  title = "Lorem Ipsum",
+  title = "Who I am",
   description = "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 }: IntroCardProps) {
   const [cards, setCards] = useState<string[]>(images);
