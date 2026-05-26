@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 /**
  * IntroCard Component
@@ -32,24 +32,23 @@ const DEFAULT_PHOTOS = [
   "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=900&h=1125&fit=crop",
 ];
 
-// --- Animation Variants ---
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.25, // Delay between each text element entering
+      staggerChildren: 0.8, 
     },
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: { 
-      duration: 1.2, // Long duration for that slow, elegant reveal 
-      ease: [0.21, 0.47, 0.32, 0.98] // Custom ease-out curve for a fluid stop
+      duration: 1.2, 
+      ease: [0.21, 0.47, 0.32, 0.98] 
     },
   },
 };
@@ -72,8 +71,20 @@ export default function IntroCard({
 
   return (
     <div className="w-full bg-white">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[5fr_6fr] gap-10 md:gap-16 p-8 md:p-16 items-center">
+      {/* Changed to flex-col on mobile, and grid on desktop */}
+      <div className="max-w-6xl mx-auto flex flex-col md:grid md:grid-cols-[5fr_6fr] gap-10 md:gap-16 p-8 md:p-16 items-center">
         
+        {/* Mobile-Only Title: Renders above the image stack on small screens */}
+        <motion.h2 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={itemVariants}
+          className="block md:hidden text-4xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] text-center w-full"
+        >
+          {title}
+        </motion.h2>
+
         {/* Left Column: Interactive Image Stack */}
         <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
           <div
@@ -108,15 +119,16 @@ export default function IntroCard({
                       zIndex: cards.length - index,
                     }}
                     exit={{ x: -300, opacity: 0, scale: 0.9 }} 
-                    transition={{ type: "spring", stiffness: 260, damping: 25 }}
-                    className="absolute inset-0 overflow-hidden bg-gray-200 shadow-xl ring-1 ring-black/5 origin-center select-none"
+                    transition={{ type: "spring", stiffness: 100, damping: 25 }}
+                    // Added 'group' class here to trigger the image hover effect
+                    className="group absolute inset-0 overflow-hidden bg-gray-200 shadow-xl ring-1 ring-black/5 origin-center select-none"
                   >
                     <Image
                       src={src}
                       alt={`Gallery image ${index + 1}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 448px"
-                      className="object-cover"
+                      className="object-cover cursor-pointer transition-transform duration-700 group-hover:scale-105"
                       draggable={false}
                       priority={isTop}
                     />
@@ -133,11 +145,12 @@ export default function IntroCard({
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }} // Triggers slightly before scrolling into full view
+          viewport={{ once: true, margin: "-100px" }} 
         >
+          {/* Desktop-Only Title: Hidden on mobile since it renders above */}
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl md:text-5xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] mb-8 leading-tight"
+            className="hidden md:block text-4xl md:text-5xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] mb-8 leading-tight"
           >
             {title}
           </motion.h2>
