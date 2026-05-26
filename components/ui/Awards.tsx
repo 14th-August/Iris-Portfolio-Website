@@ -17,7 +17,7 @@ const PHOTOS = [
   "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?w=900&h=1125&fit=crop",
 ];
 
-export default function IntroCard() {
+export default function Awards() {
   // We track the raw photo URLs array directly. The photo at cards[0] is always on top.
   const [cards, setCards] = useState<string[]>(PHOTOS);
 
@@ -80,12 +80,16 @@ export default function IntroCard() {
               })}
             </AnimatePresence>
           </div>
+
+          <p className="absolute -bottom-7 left-0 right-0 text-center text-xs tracking-widest uppercase text-gray-400 pointer-events-none">
+            Click photo to advance
+          </p>
         </div>
 
         {/* ── Text — right ───────────────────────────────────── */}
         <div className="flex flex-col">
           <h2 className="text-5xl md:text-7xl font-serif text-gray-900 mb-6 leading-tight">
-            Lorem Ipsum
+            Lorem Ipsum Dolor.
           </h2>
 
           <p className="text-lg md:text-xl text-gray-800 mb-6 leading-relaxed font-medium">
@@ -94,7 +98,7 @@ export default function IntroCard() {
 
           <div className="space-y-4 text-gray-600">
             <p className="leading-relaxed">
-                
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
             </p>
 
             <p className="leading-relaxed">
@@ -104,6 +108,13 @@ export default function IntroCard() {
             <p className="leading-relaxed">
               Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem.
             </p>
+          </div>
+
+          <div className="flex items-center gap-3 mt-8">
+            <span className="block h-px w-12 bg-gray-400" />
+            <span className="text-xs tracking-widest uppercase text-gray-500 font-medium">
+              Introcard · TSX
+            </span>
           </div>
         </div>
         

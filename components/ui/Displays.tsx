@@ -1,6 +1,5 @@
 'use client'
 
-import { useCallback } from "react";
 import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
@@ -61,6 +60,7 @@ export default function Displays({ images }: ImageDisplayProps) {
                             object cover ensures the image covers the container without distortion,
                             sizes tells the browser how much space the image will take up, allowing it to choose the right size to load for performance.
                             */}
+                            
                                 <Image
                                     src={src}
                                     alt={`Featured Look ${index + 1}`}
