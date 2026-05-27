@@ -9,6 +9,7 @@ export default function Home() {
       <VideoHero />
       <Displays images={ImageDisplayData} />
       <Introcard />
+      <Awards />
     </>
   );
 }

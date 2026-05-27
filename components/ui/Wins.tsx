@@ -1,5 +1,3 @@
-"use client"
-
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -37,7 +35,7 @@ const itemVariants = {
   },
 };
 
-export default function Awards() {
+export default function ChampionshipReel() {
   return (
     <motion.section
       className="max-w-4xl mx-auto py-20 px-6"

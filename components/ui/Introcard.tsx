@@ -80,7 +80,7 @@ export default function IntroCard({
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={itemVariants}
-          className="block md:hidden text-4xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] text-center w-full"
+          className="block md:hidden text-4xl whitespace-nowrap text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] text-center w-full"
         >
           {title}
         </motion.h2>
@@ -150,7 +150,7 @@ export default function IntroCard({
           {/* Desktop-Only Title: Hidden on mobile since it renders above */}
           <motion.h2 
             variants={itemVariants}
-            className="hidden md:block text-4xl md:text-5xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] mb-8 leading-tight"
+            className="hidden md:block text-4xl whitespace-nowrap md:text-5xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] mb-8 leading-tight"
           >
             {title}
           </motion.h2>
