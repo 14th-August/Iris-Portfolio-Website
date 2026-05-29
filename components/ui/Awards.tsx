@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion, Variants } from "framer-motion";
 
 /* ------------------------------------------------------------------ */
@@ -100,7 +99,7 @@ function Award({ award }: { award: Award }) {
       variants={itemVariants}
       className="flex w-44 select-none flex-col items-center px-2 text-center"
     >
-      <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-medium uppercase tracking-[0.3em] text-gray-400">
+      <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-medium uppercase tracking-[0.3em] text-black">
         {award.rank}
       </span>
 
