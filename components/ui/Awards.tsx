@@ -3,7 +3,7 @@
 import { motion, Variants } from "framer-motion";
 
 /* ------------------------------------------------------------------ */
-/*  Data — ordered chronologically                                     */
+/*  Data — ordered chronologically                                    */
 /* ------------------------------------------------------------------ */
 
 interface Award {
@@ -97,7 +97,7 @@ function Award({ award }: { award: Award }) {
   return (
     <motion.div
       variants={itemVariants}
-      className="flex w-44 select-none flex-col items-center px-2 text-center"
+      className="flex w-44 select-none flex-col items-center px-1 text-center"
     >
       <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-medium uppercase tracking-[0.3em] text-black">
         {award.rank}
