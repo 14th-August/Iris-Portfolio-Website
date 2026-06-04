@@ -7,10 +7,10 @@ import { motion, Variants } from "framer-motion";
 /* ------------------------------------------------------------------ */
 
 interface Award {
-  rank: string; // small label above the year
+  rank: string; 
   year: string;
-  title: string; // the category
-  competition: string; // the event
+  title: string; 
+  competition: string; 
 }
 
 const AWARDS: Award[] = [
@@ -118,15 +118,11 @@ function Award({ award }: { award: Award }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Section                                                            */
-/* ------------------------------------------------------------------ */
-
 export default function Awards() {
   return (
     <section className="w-full bg-white">
       <motion.div
-        className="mx-auto flex max-w-7xl flex-col px-6 py-20 md:py-28"
+        className="mx-auto flex max-w-7xl flex-col px-6 py-20 md:py-20"
         variants={sectionVariants}
         initial="hidden"
         whileInView="visible"
