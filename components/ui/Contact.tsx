@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
 /* ------------------------------------------------------------------ */
@@ -108,7 +108,7 @@ export default function Contact() {
           {/* Center divider — vertical on desktop, horizontal on mobile */}
           <motion.div
             variants={itemVariants}
-            className="h-px w-24 origin-center bg-black md:h-40 md:w-px"
+            className="mx-auto h-px w-24 origin-center bg-black md:mx-0 md:h-40 md:w-px"
           />
 
           {/* Right — contact rows */}
