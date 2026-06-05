@@ -71,6 +71,32 @@ function ContactRow({
 }
 
 /* ------------------------------------------------------------------ */
+/*  Animated underline link                                            */
+/* ------------------------------------------------------------------ */
+
+function AnimatedLink({
+  href,
+  external,
+  children,
+}: {
+  href: string;
+  external?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="group relative inline-block"
+    >
+      {children}
+      <span className="absolute bottom-0 left-0 h-[1px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-95 group-active:scale-x-100" />
+    </a>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Section                                                            */
 /* ------------------------------------------------------------------ */
 
@@ -84,12 +110,10 @@ export default function Contact() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
       >
-        {/* Two-column row with center divider: heading (left) · info (right) */}
         <motion.div
           variants={rowVariants}
           className="mx-auto grid w-full max-w-4xl grid-cols-1 items-center gap-y-10 py-12 md:grid-cols-[1fr_auto_1fr] md:gap-x-12"
         >
-          {/* Left — bold brand + subheading */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col items-center text-center md:items-end md:text-right"
@@ -125,23 +149,15 @@ export default function Contact() {
             </ContactRow>
 
             <ContactRow icon={<Mail size={18} strokeWidth={1.5} />}>
-              <a
-                href={`mailto:${CONTACT.email}`}
-                className="border-b border-black/20 pb-px transition-colors duration-300 hover:border-black"
-              >
+              <AnimatedLink href={`mailto:${CONTACT.email}`}>
                 {CONTACT.email}
-              </a>
+              </AnimatedLink>
             </ContactRow>
 
             <ContactRow icon={<FaInstagram size={18} />}>
-              <a
-                href={CONTACT.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-b border-black/20 pb-px transition-colors duration-300 hover:border-black"
-              >
+              <AnimatedLink href={CONTACT.instagramUrl} external>
                 Follow on Instagram
-              </a>
+              </AnimatedLink>
             </ContactRow>
           </motion.div>
         </motion.div>
