@@ -3,7 +3,6 @@ export interface ImageItem {
   src: string;
   alt: string;
   title: string;
-  category: string;
   modelId: string;
 }
 
@@ -21,7 +20,6 @@ export const galleryData: GalleryData = {
       src: "/photos/Iris Photos/CNDV7370.JPG",
       alt: "Creative makeup featuring translucent butterfly wings and pearls",
       title: "Ethereal Butterfly",
-      category: "Creative",
       modelId: "model1",
     },
     {
@@ -29,7 +27,6 @@ export const galleryData: GalleryData = {
       src: "/photos/Iris Photos/FQQO6631.JPG",
       alt: "High fashion glamour look with heavy accessories",
       title: "Gilded Glamour",
-      category: "High Fashion",
       modelId: "model2",
     },
     // Add more portfolio objects here...
@@ -39,19 +36,17 @@ export const galleryData: GalleryData = {
   shows: [
     {
       id: "s1",
-      src: "/photos/Iris Photos/IMG_0525.JPG",
+      src: "/photos/vfs/IMG_0525.JPG",
       alt: "Runway model at Vancouver Fashion Week 2024",
-      title: "Vancouver Fashion Week",
-      category: "Runway",
-      modelId: "model3", // Example model ID
+      title: "Title1",
+      modelId: "vfs", // Example model ID
     },
     {
       id: "s2",
-      src: "/photos/Iris Photos/IMG_0526.JPG",
+      src: "/photos/vfs/IMG_0526.JPG",
       alt: "Backstage touch-ups at the 2024 Charity Show",
-      title: "2024 Charity Show",
-      category: "Backstage",
-      modelId: "model4", // Example model ID
+      title: "Title2",
+      modelId: "vfs", // Example model ID
     },
     // Add more show objects here...
   ]
@@ -71,4 +66,20 @@ export function getPhotosByModel(modelId: string) {
   // Filter down to only the images that match the requested modelId
   const modelImages = allImages.filter(img => img.modelId === modelId);
   return modelImages.length > 0 ? modelImages : null;
+}
+
+export function getCoversByCategory(category: string) {
+  const images = getGalleryByCategory(category);
+  if (!images) return null;
+
+  const seen = new Set<string>();
+  const covers: ImageItem[] = [];
+
+  for (const img of images) {
+    if (!seen.has(img.modelId)) {
+      seen.add(img.modelId);
+      covers.push(img); // first image per model becomes the cover
+    }
+  }
+  return covers;
 }

@@ -10,6 +10,7 @@ import { ImageItem } from '@/utils/data';
 interface GalleryProps {
   images: ImageItem[];
   actionType?: 'route' | 'lightbox';
+  showLabels?: boolean;
 }
 
 const cardVariants = {
@@ -20,7 +21,7 @@ const cardVariants = {
   }
 };
 
-export default function EditorialGallery({ images, actionType = 'route' }: GalleryProps) {
+export default function EditorialGallery({ images, actionType = 'route', showLabels = true }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -60,14 +61,13 @@ export default function EditorialGallery({ images, actionType = 'route' }: Galle
         loading={eager ? 'eager' : 'lazy'}
         priority={eager}
       />
-      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 pointer-events-none">
-        <span className="text-white/90 text-xs tracking-[0.3em] uppercase mb-2 font-sans">
-          {img.category}
-        </span>
-        <h3 className="text-white text-xl font-light tracking-wide font-serif">
-          {img.title}
-        </h3>
-      </div>
+      { showLabels && (
+        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 pointer-events-none">
+          <h3 className="text-white text-xl font-light tracking-wide font-serif">
+            {img.title}
+          </h3>
+        </div>
+      )}
     </>
   );
 
