@@ -2,10 +2,6 @@
 
 import { motion, Variants } from "framer-motion";
 
-/* ------------------------------------------------------------------ */
-/*  Data — ordered chronologically                                    */
-/* ------------------------------------------------------------------ */
-
 interface Award {
   rank: string; 
   year: string;
@@ -52,10 +48,6 @@ const AWARDS: Award[] = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Animation — minimal fade + gentle rise (matches IntroCard)         */
-/* ------------------------------------------------------------------ */
-
 const sectionVariants: Variants = {
   hidden: {},
   visible: {
@@ -79,7 +71,6 @@ const itemVariants: Variants = {
   },
 };
 
-// Black bars: grow horizontally from the centre while fading in.
 const barVariants: Variants = {
   hidden: { scaleX: 0, opacity: 0 },
   visible: {
@@ -88,10 +79,6 @@ const barVariants: Variants = {
     transition: { duration: 1.2, ease: [0.21, 0.47, 0.32, 0.98] },
   },
 };
-
-/* ------------------------------------------------------------------ */
-/*  Award column                                                       */
-/* ------------------------------------------------------------------ */
 
 function Award({ award }: { award: Award }) {
   return (

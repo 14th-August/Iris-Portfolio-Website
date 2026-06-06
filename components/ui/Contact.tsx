@@ -4,10 +4,6 @@ import { motion, Variants } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
-/* ------------------------------------------------------------------ */
-/*  Data                                                               */
-/* ------------------------------------------------------------------ */
-
 const CONTACT = {
   brand: "IRIS BEAUTY",
   heading: "Contact",
@@ -18,10 +14,6 @@ const CONTACT = {
   copyright: "Copyright © 2026 Iris Design",
   editorNote: "Website made by Casey",
 };
-
-/* ------------------------------------------------------------------ */
-/*  Animation — mirrors the Awards section variants & easing           */
-/* ------------------------------------------------------------------ */
 
 const sectionVariants: Variants = {
   hidden: {},
@@ -45,11 +37,6 @@ const itemVariants: Variants = {
     transition: { duration: 1.2, ease: [0.21, 0.47, 0.32, 0.98] },
   },
 };
-
-/* ------------------------------------------------------------------ */
-/*  Contact row                                                        */
-/* ------------------------------------------------------------------ */
-
 function ContactRow({
   icon,
   children,
@@ -69,11 +56,6 @@ function ContactRow({
     </motion.div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Animated underline link                                            */
-/* ------------------------------------------------------------------ */
-
 function AnimatedLink({
   href,
   external,
@@ -95,10 +77,6 @@ function AnimatedLink({
     </a>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Section                                                            */
-/* ------------------------------------------------------------------ */
 
 export default function Contact() {
   return (
@@ -129,13 +107,11 @@ export default function Contact() {
             </span>
           </motion.div>
 
-          {/* Center divider — vertical on desktop, horizontal on mobile */}
           <motion.div
             variants={itemVariants}
             className="mx-auto h-px w-24 origin-center bg-black md:mx-0 md:h-40 md:w-px"
           />
 
-          {/* Right — contact rows */}
           <motion.div
             variants={rowVariants}
             className="flex flex-col items-center gap-7 md:items-start"
@@ -162,7 +138,6 @@ export default function Contact() {
           </motion.div>
         </motion.div>
 
-        {/* Footer — copyright + editor note, stacked & centered */}
         <motion.div
           variants={rowVariants}
           className="flex flex-col items-center gap-2 pt-12 text-center"

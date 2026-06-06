@@ -149,7 +149,7 @@ export default function EditorialGallery({ images, actionType = 'route' }: Galle
               className="group relative w-full aspect-[4/5] overflow-hidden bg-neutral-100"
             >
               {actionType === 'route' ? (
-                <Link href={`/models/${img.modelId}`} className="absolute inset-0 z-20 cursor-pointer">
+                <Link href={`/collections/${img.modelId}`} className="absolute inset-0 z-20 cursor-pointer">
                   <CardContent img={img} eager={index === 0} />
                 </Link>
               ) : (
