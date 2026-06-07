@@ -5,12 +5,12 @@ import { Mail, MapPin } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
 const CONTACT = {
-  brand: "IRIS BEAUTY",
+  brand: "IRIS DESIGN",
   heading: "Contact",
   subtitle: "HSIANG-NING YU",
-  addressLines: ["Studio address line 1", "100 Taipei, Taiwan"],
-  email: "hello@irisdesign.com",
-  instagramUrl: "https://instagram.com/yourhandle",
+  addressLines: ["Vancouver", "British Columbia", "Canada"],
+  email: "linda20010801@gmail.com.com",
+  instagramUrl: "https://instagram.com/_iris_makeup",
   copyright: "Copyright © 2026 Iris Design",
   editorNote: "Website made by Casey",
 };
