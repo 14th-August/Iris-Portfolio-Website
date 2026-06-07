@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ImageItem } from '@/utils/data';
+import { ImageItem, getModelName } from '@/utils/data';
 
 interface GalleryProps {
   images: ImageItem[];
@@ -63,8 +63,8 @@ export default function EditorialGallery({ images, actionType = 'route', showLab
       />
       { showLabels && (
         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 pointer-events-none">
-          <h3 className="text-white text-xl font-light tracking-wide font-serif">
-            {img.title}
+          <h3 className="text-white font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em]">
+            @{getModelName(img.modelId)}
           </h3>
         </div>
       )}
@@ -157,7 +157,7 @@ export default function EditorialGallery({ images, actionType = 'route', showLab
                   type="button"
                   onClick={() => setSelectedImage(img)}
                   className="absolute inset-0 z-20 cursor-pointer"
-                  aria-label={`View ${img.title} fullscreen`}
+                  aria-label={`View ${img.modelId} fullscreen`}
                 >
                   <CardContent img={img} eager={index === 0} />
                 </button>
