@@ -9,10 +9,12 @@ interface IntroCardProps {
 }
 
 const DEFAULT_PHOTOS = [
-  "/photos/personal/IMG_0177.JPG",
-  "/photos/personal/IMG_0596.JPG",
+  "/photos/personal/IMG_2561.JPG",
   "/photos/personal/IMG_1269.JPG",
-  "/photos/personal/IMG_1271.JPG",
+  "/photos/personal/IMG_3857.JPG",
+  "/photos/personal/IMG_8302.JPG",
+  "/photos/personal/YARS6086.JPG",
+  "/photos/personal/RXPT5047.JPG",
 ];
 
 const containerVariants: Variants = {
@@ -46,7 +48,7 @@ export default function IntroCard({ images = DEFAULT_PHOTOS }: IntroCardProps) {
   // Auto-advance to the next photo every 5 seconds
   useEffect(() => {
     if (images.length <= 1) return;
-    const interval = setInterval(advance, 5000);
+    const interval = setInterval(advance, 7500);
     return () => clearInterval(interval);
   }, [images.length, advance]);
 
@@ -70,17 +72,11 @@ export default function IntroCard({ images = DEFAULT_PHOTOS }: IntroCardProps) {
         {/* Left Column: Click-to-Advance Single Image with Crossfade */}
         <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
           <div
-            className="absolute inset-0 overflow-hidden bg-gray-200 shadow-xl ring-1 ring-black/5 cursor-pointer focus:outline-none"
+            className="absolute inset-0 overflow-hidden bg-white ring-1 ring-black/5 cursor-pointer focus:outline-none"
             onClick={advance}
             role="button"
             tabIndex={0}
             aria-label="Show next photo"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                advance();
-              }
-            }}
           >
             <AnimatePresence>
               <motion.div

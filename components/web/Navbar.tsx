@@ -56,7 +56,7 @@ export function Navbar() {
     <nav className="bg-white text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em]">
       <div className="w-full max-w-[1400px] mx-auto flex justify-between items-center py-4 px-6 md:px-12">
         <Link href="/" className="text-xl md:text-xl whitespace-nowrap flex-shrink-0">
-          Iris Design
+          Iris Beauty
             <h6 className="text-xs md:text-xs">
             Hsiang-Ning Yu
             </h6>
