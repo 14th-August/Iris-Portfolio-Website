@@ -128,8 +128,8 @@ export default function IntroCard({ images = DEFAULT_PHOTOS }: IntroCardProps) {
             className="space-y-4 text-gray-600 font-[family-name:var(--font-montserrat)] font-light text-sm md:text-base"
           >
             <p className="leading-relaxed">
-              I have worked with various Models from various parts of Asia all the way to Canadas west coast,
-              I have experience from Make Up to Special Effects all the way to Bridal Work. 
+              I have worked with various models from various parts of Asia all the way to Canadas west coast,
+              I have experience from make up to special effects, all the way to bridal work. 
               Being a professional makeup artist has allowed me to express my creativity in unique ways, 
               I am dedicated to providing exceptional service to my clients.
             </p>

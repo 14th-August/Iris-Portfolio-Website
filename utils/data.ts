@@ -15,6 +15,8 @@ export const modelNames: Record<string, string> = {
   "hsuhsuanru-2": "hsuhsuanru",
   "vfs": "Vancouver Fashion Show",
   "taiwan_show": "Fashion & Beauty",
+  "unknown1": "jaja5450",
+  "unknown2": "jaja5450",
 };
 
 export const galleryData: GalleryData = {
@@ -377,49 +379,49 @@ export const galleryData: GalleryData = {
       id: "unknown3_1",
       src: "/photos/unknown3/IMG_8506.JPG",
       alt: "unknown3 Image by Iris",
-      modelId: "unknown3",
+      modelId: "summerrr0228",
     },
     {
       id: "unknown3_2",
       src: "/photos/unknown3/IMG_8508.JPG",
       alt: "unknown3 Image by Iris",
-      modelId: "unknown3",
+      modelId: "summerrr0228",
     },
     {
       id: "unknown3_3",
       src: "/photos/unknown3/IMG_8628.JPG",
       alt: "unknown3 Image by Iris",
-      modelId: "unknown3",
+      modelId: "summerrr0228",
     },
     {
       id: "unknown3_4",
       src: "/photos/unknown3/IMG_8629.JPG",
       alt: "unknown3 Image by Iris",
-      modelId: "unknown3",
+      modelId: "summerrr0228",
     },
     {
       id: "unknown3_5",
       src: "/photos/unknown3/IMG_8631.JPG",
       alt: "unknown3 Image by Iris",
-      modelId: "unknown3",
+      modelId: "summerrr0228",
     },
     {
       id: "unknown5_1",
       src: "/photos/unknown5/IMG_8417.JPG",
       alt: "unknown5 Image by Iris",
-      modelId: "unknown5",
+      modelId: "eva861105",
     },
     {
       id: "unknown5_2",
       src: "/photos/unknown5/IMG_8418.JPG",
       alt: "unknown5 Image by Iris",
-      modelId: "unknown5",
+      modelId: "eva861105",
     },
     {
       id: "unknown5_3",
       src: "/photos/unknown5/IMG_8507.JPG",
       alt: "unknown5 Image by Iris",
-      modelId: "unknown5",
+      modelId: "eva861105",
     },
     {
       id: "liiin_yu_1",

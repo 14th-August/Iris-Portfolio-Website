@@ -9,7 +9,7 @@ export default function VideoHero() {
         muted
         loop
         playsInline
-        src="/photos/iris-photos/IMG_2213.MP4"
+        src="/photos/IrisVideoV3.mp4"
       />
 
       <div className="absolute top-0 left-0 w-full h-full bg-black/45 -z-10 select-none" />
