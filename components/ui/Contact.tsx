@@ -5,11 +5,11 @@ import { Mail, MapPin } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
 const CONTACT = {
-  brand: "IRIS DESIGN",
+  brand: "IRIS BEAUTY",
   heading: "Contact",
   subtitle: "HSIANG-NING YU",
   addressLines: ["Vancouver", "British Columbia", "Canada"],
-  email: "linda20010801@gmail.com.com",
+  email: "linda20010801@gmail.com",
   instagramUrl: "https://instagram.com/_iris_makeup",
   copyright: "Copyright © 2026 Iris Design",
   editorNote: "Website made by Casey",
@@ -73,7 +73,7 @@ function AnimatedLink({
       className="group relative inline-block"
     >
       {children}
-      <span className="absolute bottom-0 left-0 h-[1px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-95 group-active:scale-x-100" />
+      <span className="absolute bottom-0 left-0 h-[1px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-98 group-active:scale-x-100" />
     </a>
   );
 }

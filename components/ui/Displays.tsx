@@ -6,10 +6,10 @@ import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
 import AutoScroll from 'embla-carousel-auto-scroll';
 
 //defines the props to use.
-interface ImageDisplayProps {
+interface RecommendedPhotos {
     images: string[]; // Array of image URLs to display
 }
-export default function Displays({ images }: ImageDisplayProps) {
+export default function Displays({ images }: RecommendedPhotos) {
     const [emblaRef] = useEmblaCarousel(
         { loop: true, dragFree: true, duration: 20 }, // Embla options
         [
