@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { ImageItem, getModelName } from '@/utils/data';
 
 interface GalleryProps {
@@ -13,22 +13,24 @@ interface GalleryProps {
   showLabels?: boolean;
 }
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 60, scale: 0.98 },
   visible: {
-    opacity: 1, y: 0, scale: 1,
-    transition: { type: "spring", stiffness: 40, damping: 15, mass: 1, duration: 1.2 }
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { 
+      type: "spring", 
+      stiffness: 40, 
+      damping: 15, 
+      mass: 1, 
+      duration: 1.2 
+    }
   }
 };
 
 export default function EditorialGallery({ images, actionType = 'route', showLabels = true }: GalleryProps) {
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  // Portals can only target document.body after mount (avoids SSR mismatch)
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Lock body scroll + Escape-to-close while lightbox is open
   useEffect(() => {
@@ -48,8 +50,7 @@ export default function EditorialGallery({ images, actionType = 'route', showLab
     };
   }, [selectedImage]);
 
-  if (!images || images.length === 0) return <p>No images found.</p>;
-
+  if (!images || images.length === 0) return <p>No images found.</p>;  
   const CardContent = ({ img, eager }: { img: ImageItem; eager: boolean }) => (
     <>
       <Image
@@ -168,7 +169,7 @@ export default function EditorialGallery({ images, actionType = 'route', showLab
       </section>
 
       {/* Render lightbox into document.body so no parent stacking context can trap it */}
-      {mounted && createPortal(lightbox, document.body)}
+      {typeof document !== "undefined" && createPortal(lightbox, document.body)}
     </>
   );
 }
