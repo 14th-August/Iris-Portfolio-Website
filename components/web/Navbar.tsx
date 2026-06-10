@@ -3,10 +3,17 @@
 import Link from 'next/link';
 import { useState, useEffect } from "react";
 
+
+/* Navbar Component: 
+Resizes based on screen size, this navbar drives 
+2 different states. One for desktop and one for mobile*/
 export function Navbar() {
 
+  // useState just for mobile menu open/close state
   const [isOpen, setIsOpen] = useState(false);
 
+  // checks window width on resize and 
+  // forces menu closed if switching to desktop size
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768 && isOpen) {
@@ -14,9 +21,22 @@ export function Navbar() {
       }
     };
 
+    // Listen for window resize events
+    // returns the event listener on unmount to prevent memory leaks
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [isOpen]);
+
+  // Helper function to compute the menu's class string based on isOpen state
+
+  // if isOpen is true, we add the mobile menu classes to show it
+  // if isOpen is false, we add "hidden" to hide the mobile menu
+
+
+  // we can call this inside a div to get the right classes 
+  // to set tailwind to show/hide the menu based on screen size 
+  // and isOpen state
 
   function getMenuClasses() {
     const menuClasses = [
@@ -48,7 +68,6 @@ export function Navbar() {
     } else {
       menuClasses.push("hidden");
     }
-
     return menuClasses.join(' ');
   }
 
@@ -84,11 +103,15 @@ export function Navbar() {
           </Link>
         </div>
 
+          {/* This is the hamburger menu icon for mobile 
+          uses ternary for opening logic */}
+
           <div className="md:hidden flex items-center">
             <button onClick={() => {
               setIsOpen(!isOpen);
             }}>
               {isOpen ? (
+                // this is the x icon
                 <svg 
                   className="w-6 h-6 text-black" 
                   fill="none" 
@@ -99,6 +122,7 @@ export function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
+                // this is the hamburger icon menu when open 
                 <svg 
                   className="w-6 h-6 text-black" 
                   fill="none" 
