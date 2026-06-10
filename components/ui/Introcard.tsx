@@ -30,6 +30,7 @@ const DEFAULT_PHOTOS = [
   "/photos/personal/IMG_0177.JPG",
   "/photos/personal/IMG_8324.JPG",
   "/photos/personal/IMG_8300.JPG",
+  "/photos/personal/VEFE4271.JPG",
 ];
 
 const containerVariants: Variants = {
