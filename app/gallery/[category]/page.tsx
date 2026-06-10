@@ -1,5 +1,5 @@
 import EditorialGallery from '@/components/ui/Cards';
-import { getCoversByCategory } from '@/utils/data';
+import { getCoversByCategory } from '@/utils/models';
 import { notFound } from 'next/navigation';
 
 export default async function GalleryCategoryPage({

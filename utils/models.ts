@@ -1,3 +1,6 @@
+/* labels every ImageItem to have 4 properties, could add more later */
+/* basically makes it so if any ImageItem doesnt have all 4 compiler issues */
+
 export interface ImageItem {
   id: string;
   src: string;
@@ -10,6 +13,12 @@ export type GalleryData = {
   [key: string]: ImageItem[];
 };
 
+/* so this is only object data to be used
+when multiple of the same artists have two different sets
+or when acronyms need full names.
+Record is a built in TS object, Record<K, V> constructs 
+an object type with keys of type K and values of type V.*/
+
 export const modelNames: Record<string, string> = {
   "hsuhsuanru-1": "hsuhsuanru",
   "hsuhsuanru-2": "hsuhsuanru",
@@ -18,6 +27,13 @@ export const modelNames: Record<string, string> = {
   "unknown1": "jaja5450",
   "unknown2": "jaja5450",
 };
+
+
+/* Each top-level key like portfolio is an arbitrary 
+string you choose, and each value must be an array of ImageItem. */
+
+/* Gallerydata has portfolio and shows
+only so far. */
 
 export const galleryData: GalleryData = {
   portfolio: [
@@ -514,14 +530,20 @@ export const galleryData: GalleryData = {
   ]
 };
 
+/* Looks up one category (e.g. "portfolio" or "shows") and returns its
+   array of images. Lowercases the input so /gallery/Portfolio still
+   matches the "portfolio" key. Returns null if the category doesn't exist. */
 export function getGalleryByCategory(category: string) {
-  // Convert to lowercase to ensure /gallery/Portfolio matches 'portfolio'
   const normalizedCategory = category.toLowerCase();
-  // Return the matching array, or null if it doesn't exist
   return galleryData[normalizedCategory] || null;
 }
 
+/* Returns every image belonging to a single model, across ALL categories.
+   Flattens the whole galleryData into one array, then filters by modelId.
+   Used by the collections/[modelId] route. Returns null if none found. */
+
 export function getPhotosByModel(modelId: string) {
+  // edge case of no modelI
   if (!modelId) return null;
   // Combine all categories into one massive array of images
   const allImages = Object.values(galleryData).flat();
@@ -529,6 +551,11 @@ export function getPhotosByModel(modelId: string) {
   const modelImages = allImages.filter(img => img.modelId === modelId);
   return modelImages.length > 0 ? modelImages : null;
 }
+
+/* Builds the category landing page: one cover image per model.
+   Walks the category's images in order and keeps the FIRST image of
+   each modelId (tracked via a Set), skipping the rest. Returns null
+   if the category doesn't exist. */
 
 export function getCoversByCategory(category: string) {
   const images = getGalleryByCategory(category);
@@ -546,6 +573,8 @@ export function getCoversByCategory(category: string) {
   return covers;
 }
 
+/* Used to get the full name of a model by its ID 
+?? is equivalent to || or exclusive or but provides a default value */
 export function getModelName(modelId: string) {
   return modelNames[modelId] ?? modelId;
 }

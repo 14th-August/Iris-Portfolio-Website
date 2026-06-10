@@ -1,5 +1,5 @@
 // app/collections/[modelId]/page.tsx
-import { getPhotosByModel, getModelName } from '@/utils/data';
+import { getPhotosByModel, getModelName } from '@/utils/models';
 import EditorialGallery from '@/components/ui/Cards';
 import { notFound } from 'next/navigation';
 

@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
-import { ImageItem, getModelName } from '@/utils/data';
+import { ImageItem, getModelName } from '@/utils/models';
 
 interface GalleryProps {
   images: ImageItem[];
