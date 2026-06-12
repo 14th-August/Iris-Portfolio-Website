@@ -28,7 +28,7 @@ export default function VideoHero() {
         
         <Link href="/contact" className="relative group inline-block z-10 p-2 text-center opacity-30 text-white font-[family-name:var(--font-montserrat)] uppercase tracking-[0.3em] 
             hover:opacity-80 transition-opacity duration-200 active:opacity-80 transition-opacity duration-200">
-                Contact Now!
+                Contact
             <span className="absolute left-0 bottom-0 w-full h-[1px] bg-white scale-x-0 group-active:scale-x-100 group-hover:scale-x-98 transition-transform duration-300 origin-left"></span>        
         </Link>
       </div>

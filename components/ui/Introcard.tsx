@@ -134,28 +134,27 @@ export default function IntroCard({
                 })}
               </AnimatePresence>
             </div>
-
-            {/* Cycle hint: tappable arrow that also advances the deck.
-                Gentle looping nudge signals the stack is interactive. */}
-            <button
-              type="button"
-              onClick={cycleDeck}
-              aria-label="Show next photo"
-              className="mt-6 flex items-center gap-2 text-gray-400 hover:text-gray-700 transition-colors duration-300 font-[family-name:var(--font-montserrat)] text-[11px] font-light uppercase tracking-[0.3em] cursor-pointer"
-            >
-              <span>Tap to cycle</span>
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-                className="inline-flex"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </motion.span>
-            </button>
           </div>
+
+          {/* Cycle hint: OUTSIDE the aspect box, so it sits below the photos */}
+          <button
+            type="button"
+            onClick={cycleDeck}
+            aria-label="Show next photo"
+            className="mt-6 flex items-center gap-2 text-gray-400 hover:text-gray-700 transition-colors duration-300 font-[family-name:var(--font-montserrat)] text-[11px] font-light uppercase tracking-[0.3em] cursor-pointer"
+          >
+            <span>Tap to cycle</span>
+            <motion.span
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              className="inline-flex"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </motion.span>
+          </button>
         </div>
 
         {/* Right Column: Scroll-Revealed Typography */}
