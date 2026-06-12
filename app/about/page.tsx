@@ -111,7 +111,7 @@ export default function IntroCard({ images = DEFAULT_PHOTOS }: IntroCardProps) {
         >
           <motion.h2
             variants={itemVariants}
-            className="hidden md:block text-left text-4xl mt-[200px] mb-40 whitespace-nowrap md:text-5xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] leading-tight"
+            className="hidden md:block text-left text-4xl mt-20 mb-8 whitespace-nowrap md:text-5xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] leading-tight"
           >
             Iris Beauty
           </motion.h2>
