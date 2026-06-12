@@ -1,162 +1,199 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import Image from 'next/image';
-import useEmblaCarousel from 'embla-carousel-react';
-import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures';
-import AutoScroll from 'embla-carousel-auto-scroll';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useCallback } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { IntroPhotos } from "@/utils/intro";
 
-/* The carouselling photos at the beginning of the site.
-   Clicking any image opens a fullscreen lightbox identical to
-   EditorialGallery's (portal, fade/scale animation, Escape +
-   click-outside to close, body scroll-lock). */
+/**
+ * IntroCard Component
+ * * This component renders a split-layout introduction section featuring an interactive,
+ * animated image stack on the left and customizable typography on the right.
+ * * - State & Interaction: The `cards` state tracks an array of image URLs. The `cycleDeck`
+ * function (memoized for performance) shifts the top image to the back of the array
+ * upon user click or keyboard interaction. A "tap to cycle" arrow below the stack
+ * signals the interaction and also advances the deck.
+ * - Animation: Framer Motion's `AnimatePresence` manages the image stack. A staggered
+ * scroll-reveal animation is applied to the typography using `whileInView` and `variants`.
+ * - Image Optimization: The Next.js `<Image />` component handles responsive cropping via
+ * the `fill` prop. The `priority` flag is dynamically applied to the top card.
+ * - Typography: All text elements use the global Montserrat CSS variable (--font-montserrat).
+ */
 
-interface RecommendedPhotos {
-    images: string[];
+interface IntroCardProps {
+  images?: string[];
+  title?: string;
+  description?: string;
 }
 
-export default function Displays({ images }: RecommendedPhotos) {
-    // Which image is open in the lightbox (null = closed)
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.8,
+    },
+  },
+};
 
-    const [emblaRef] = useEmblaCarousel(
-        { loop: true, duration: 20 }, // dragFree removed to avoid auto-scroll freeze
-        [
-            WheelGesturesPlugin(),
-            AutoScroll({
-                speed: 0.5,
-                startDelay: 0,
-                stopOnInteraction: false,
-                stopOnMouseEnter: true,
-            })
-        ]
-    );
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.2,
+      ease: [0.21, 0.47, 0.32, 0.98],
+    },
+  },
+};
 
-    // Lock body scroll + Escape-to-close while lightbox is open
-    useEffect(() => {
-        if (!selectedImage) return;
+export default function IntroCard({
+  images = IntroPhotos,
+  title = "Who I am",
+  description = "Award-winning makeup artist and cosmetology specialist, bringing styling expertise and creative vision to clients across Canada.",
+}: IntroCardProps) {
 
-        const originalOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
+  /* UseCallback for card stacking, this logic makes sense
+  given a quick read. */
+  const [cards, setCards] = useState<string[]>(images);
 
-        const onKey = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setSelectedImage(null);
-        };
-        window.addEventListener('keydown', onKey);
+  const cycleDeck = useCallback(() => {
+    setCards((prev) => {
+      if (prev.length <= 1) return prev;
+      return [...prev.slice(1), prev[0]];
+    });
+  }, []);
 
-        return () => {
-            document.body.style.overflow = originalOverflow;
-            window.removeEventListener('keydown', onKey);
-        };
-    }, [selectedImage]);
+  if (!cards || cards.length === 0) return null;
 
-    const lightbox = (
-        <AnimatePresence>
-            {selectedImage && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    onClick={() => setSelectedImage(null)}
-                    className="bg-white flex items-center justify-center cursor-zoom-out"
-                    style={{
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        width: '100vw',
-                        height: '100dvh',
-                        zIndex: 9999,
-                    }}
-                >
-                    <button
-                        type="button"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedImage(null);
-                        }}
-                        className="p-3 bg-neutral-100 hover:bg-neutral-200 text-black rounded-full cursor-pointer shadow-md transition-colors"
-                        style={{
-                            position: 'fixed',
-                            bottom: '2rem',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            zIndex: 10000,
-                        }}
-                        aria-label="Close fullscreen"
-                    >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                        </svg>
-                    </button>
+  return (
+    <div className="w-full bg-white">
+      {/* Changed to flex-col on mobile, and grid on desktop */}
+      <div className="max-w-6xl mx-auto flex flex-col md:grid md:grid-cols-[5fr_6fr] gap-10 md:gap-16 p-8 md:p-16 items-center">
 
-                    <motion.div
-                        initial={{ scale: 0.95, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ scale: 0.95, opacity: 0 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        onClick={(e) => e.stopPropagation()}
-                        className="relative cursor-default"
-                        style={{ width: '90vw', maxWidth: '800px', height: '80dvh' }}
-                    >
-                        <Image
-                            src={selectedImage}
-                            alt="Featured look fullscreen"
-                            fill
-                            priority
-                            sizes="(max-width: 1024px) 100vw, 800px"
-                            style={{ objectFit: 'contain' }}
-                        />
-                    </motion.div>
-                </motion.div>
-            )}
-        </AnimatePresence>
-    );
+        {/* Mobile-Only Title: Renders above the image stack on small screens */}
+        <motion.h2
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={itemVariants}
+          className="block md:hidden text-4xl whitespace-nowrap text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] text-center w-full"
+        >
+          {title}
+        </motion.h2>
 
-    return (
-        <div className="w-full bg-white text-black">
-            <div className="p-4.5 text-center font-[family-name:var(--font-montserrat)] uppercase tracking-[0.2em]">
-                <h1 className="relative flex align-center text-black justify-center w-full
-                        text-2xl opacity-0 animate-fade-in-up [animation-delay:1.5s]">
-                    Featured Looks
-                </h1>
-            </div>
-
-            <div className="w-full mt-0 overflow-hidden opacity-0 animate-fade-in-up [animation-delay:2s]"
-                ref={emblaRef}
+        {/* Left Column: Interactive Image Stack + cycle hint */}
+        <div className="flex flex-col items-center w-full max-w-md mx-auto">
+          <div className="relative aspect-[4/5] w-full">
+            <div
+              className="absolute inset-0 cursor-pointer focus:outline-none"
+              onClick={cycleDeck}
+              role="button"
+              tabIndex={0}
+              aria-label="Show next photo"
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  cycleDeck();
+                }
+              }}
             >
-                <div className="flex gap-6 px-6 pt-2 pb-8">
-                    {images.map((src, index) => (
-                        <div
-                            key={index}
-                            className="relative flex-none w-[80vw] md:w-96 aspect-[4/5] group select-none"
-                        >
-                            {/* Button overlay makes the whole image clickable to open the lightbox */}
-                            <button
-                                type="button"
-                                onClick={() => setSelectedImage(src)}
-                                className="absolute inset-0 z-20 cursor-pointer"
-                                aria-label={`View featured look ${index + 1} fullscreen`}
-                            >
-                                <Image
-                                    src={src}
-                                    alt={`Featured Look ${index + 1}`}
-                                    fill
-                                    draggable={false}
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                />
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            </div>
+              <AnimatePresence mode="popLayout">
+                {cards.map((src, index) => {
+                  const isTop = index === 0;
+                  const isMiddle = index === 1;
 
-            {/* Render lightbox into document.body so no parent stacking context can trap it */}
-            {typeof document !== "undefined" && createPortal(lightbox, document.body)}
+                  return (
+                    <motion.div
+                      key={src}
+                      layout
+                      initial={{ x: -200, opacity: 0, scale: 0.8 }}
+                      animate={{
+                        x: isTop ? 0 : isMiddle ? 20 : 40,
+                        y: 0,
+                        rotate: 0,
+                        scale: isTop ? 1 : isMiddle ? 0.95 : 0.9,
+                        opacity: index < 3 ? 1 : 0,
+                        zIndex: cards.length - index,
+                      }}
+                      exit={{ x: -300, opacity: 0, scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 100, damping: 25 }}
+                      className="group absolute inset-0 overflow-hidden bg-gray-200 shadow-xl ring-1 ring-black/5 origin-center select-none"
+                    >
+                      <Image
+                        src={src}
+                        alt={`Gallery image ${index + 1}`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 448px"
+                        className="object-cover cursor-pointer transition-transform duration-700 group-hover:scale-105"
+                        draggable={false}
+                        priority={isTop}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          {/* Cycle hint: OUTSIDE the aspect box, so it sits below the photos */}
+          <button
+            type="button"
+            onClick={cycleDeck}
+            aria-label="Show next photo"
+            className="mt-6 flex items-center gap-2 text-gray-400 hover:text-gray-700 transition-colors duration-300 font-[family-name:var(--font-montserrat)] text-[11px] font-light uppercase tracking-[0.3em] cursor-pointer"
+          >
+            <span>Tap to cycle</span>
+            <motion.span
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              className="inline-flex"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </motion.span>
+          </button>
         </div>
-    );
+
+        {/* Right Column: Scroll-Revealed Typography */}
+        <motion.div
+          className="flex flex-col"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {/* Desktop-Only Title: Hidden on mobile since it renders above */}
+          <motion.h2
+            variants={itemVariants}
+            className="hidden md:block text-4xl whitespace-nowrap md:text-5xl text-black font-[family-name:var(--font-montserrat)] font-extralight uppercase tracking-[0.3em] mb-8 leading-tight"
+          >
+            {title}
+          </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-lg md:text-xl text-gray-800 mb-6 leading-relaxed font-[family-name:var(--font-montserrat)] font-light"
+          >
+            {description}
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="space-y-4 text-gray-600 font-[family-name:var(--font-montserrat)] font-light text-sm md:text-base"
+          >
+            <p className="leading-relaxed">
+              I was incredibly fortunate to have mentors who encouraged me to step out of my comfort zone and enter national styling competitions during my studies in Taiwan. I dedicated two years to national events, and was so grateful to be awarded three championships and two runner-up titles.
+            </p>
+            <p className="leading-relaxed">
+              Now based in Canada, I am currently open for freelance and contract work, and I am so excited to bring that same dedication to my clients here. Please feel free to explore my portfolio to see some of my recent work!
+            </p>
+          </motion.div>
+        </motion.div>
+
+      </div>
+    </div>
+  );
 }
