@@ -13,6 +13,7 @@ export default function VideoHero() {
         muted
         loop
         playsInline
+        poster="/photos/personal/IMG_0177.JPG"
         src="/photos/IrisVideoV3.mp4"
       />
 
