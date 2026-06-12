@@ -3,10 +3,10 @@
 import { motion, Variants } from "framer-motion";
 
 interface Award {
-  rank: string; 
+  rank: string;
   year: string;
-  title: string; 
-  competition: string; 
+  title: string;
+  competition: string;
 }
 
 const AWARDS: Award[] = [
@@ -48,6 +48,12 @@ const AWARDS: Award[] = [
   },
 ];
 
+// Always render newest -> oldest, regardless of array order.
+// (Change b - a to a - b for oldest first.)
+const SORTED_AWARDS = [...AWARDS].sort(
+  (a, b) => Number(b.year) - Number(a.year)
+);
+
 const sectionVariants: Variants = {
   hidden: {},
   visible: {
@@ -84,13 +90,13 @@ function Award({ award }: { award: Award }) {
   return (
     <motion.div
       variants={itemVariants}
-      className="flex w-44 select-none flex-col items-center px-1 text-center"
+      className="flex w-full select-none flex-col items-center px-1 text-center"
     >
       <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-medium uppercase tracking-[0.3em] text-black">
         {award.rank}
       </span>
 
-      <span className="mt-2 font-[family-name:var(--font-montserrat)] text-6xl font-extralight leading-none tracking-tight text-gray-900">
+      <span className="mt-2 font-[family-name:var(--font-montserrat)] text-5xl md:text-6xl font-extralight leading-none tracking-tight text-gray-900">
         {award.year}
       </span>
 
@@ -118,12 +124,12 @@ export default function Awards() {
         {/* Top bar */}
         <motion.div variants={barVariants} className="h-px w-full origin-center bg-black" />
 
-        {/* Awards row */}
+        {/* Awards grid: 2 columns at smallest, 3 on tablet+ */}
         <motion.div
           variants={rowVariants}
-          className="flex flex-wrap items-start justify-center gap-x-6 gap-y-14 py-16"
+          className="grid grid-cols-2 md:grid-cols-3 items-start justify-items-center gap-x-6 gap-y-14 py-16"
         >
-          {AWARDS.map((a, i) => (
+          {SORTED_AWARDS.map((a, i) => (
             <Award key={i} award={a} />
           ))}
         </motion.div>
