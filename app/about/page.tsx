@@ -3,19 +3,11 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { aboutPhotos } from "@/utils/about";
 
 interface IntroCardProps {
   images?: string[];
 }
-
-const DEFAULT_PHOTOS = [
-  "/photos/personal/IMG_2561.JPG",
-  "/photos/personal/IMG_1269.JPG",
-  "/photos/personal/IMG_3857.JPG",
-  "/photos/personal/IMG_8302.JPG",
-  "/photos/personal/YARS6086.JPG",
-  "/photos/personal/RXPT5047.JPG",
-];
 
 const containerVariants: Variants = {
   hidden: {},
@@ -38,7 +30,7 @@ const itemVariants: Variants = {
   },
 };
 
-export default function IntroCard({ images = DEFAULT_PHOTOS }: IntroCardProps) {
+export default function IntroCard({ images = aboutPhotos }: IntroCardProps) {
   // Stacked deck of image URLs; cycleDeck moves the top card to the back
   const [cards, setCards] = useState<string[]>(images);
 
