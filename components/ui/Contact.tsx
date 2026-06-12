@@ -4,6 +4,9 @@ import { motion, Variants } from "framer-motion";
 import { Mail, MapPin } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
+/* Contact Information Component, re rendered in
+/contact route. */
+
 const CONTACT = {
   brand: "IRIS BEAUTY",
   heading: "Contact",
@@ -73,7 +76,7 @@ function AnimatedLink({
       className="group relative inline-block"
     >
       {children}
-      <span className="absolute bottom-0 left-0 h-[1px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-98 group-active:scale-x-100" />
+      <span className="pointer-events-none absolute bottom-0 left-0 h-[1px] w-full origin-left scale-x-0 bg-black transition-transform duration-300 group-hover:scale-x-98 group-active:scale-x-100" />
     </a>
   );
 }

@@ -1,5 +1,9 @@
 import Link from "next/link";
 
+/* Video component that gets rendered at the start of
+the site loading, switches video dimensions for mobile
+the video needs to be an .mp4 in public. On top of that is a see through white
+title and a link to contact info. */
 export default function VideoHero() {
   return (
       <div className="relative flex items-center justify-center w-full h-[77.5vh] md:h-[80vh] overflow-hidden font-sans">  

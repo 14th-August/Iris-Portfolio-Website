@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { IntroPhotos } from "@/utils/intro";
 
 /**
  * IntroCard Component
@@ -23,15 +24,6 @@ interface IntroCardProps {
   title?: string;
   description?: string;
 }
-
-const DEFAULT_PHOTOS = [
-  "/photos/personal/IMG_3860.JPG",
-  "/photos/personal/THKA3693.JPG",
-  "/photos/personal/IMG_0177.JPG",
-  "/photos/personal/IMG_8324.JPG",
-  "/photos/personal/IMG_8300.JPG",
-  "/photos/personal/VEFE4271.JPG",
-];
 
 const containerVariants: Variants = {
   hidden: {},
@@ -55,10 +47,13 @@ const itemVariants: Variants = {
 };
 
 export default function IntroCard({
-  images = DEFAULT_PHOTOS,
+  images = IntroPhotos,
   title = "Who I am",
   description = "Award-winning makeup artist and cosmetology specialist, bringing styling expertise and creative vision to clients across Canada.",
 }: IntroCardProps) {
+
+  /* UseCallback for card stacking, this logic makes sense
+  given a quick read. */
   const [cards, setCards] = useState<string[]>(images);
 
   const cycleDeck = useCallback(() => {
@@ -121,7 +116,6 @@ export default function IntroCard({
                     }}
                     exit={{ x: -300, opacity: 0, scale: 0.9 }} 
                     transition={{ type: "spring", stiffness: 100, damping: 25 }}
-                    // Added 'group' class here to trigger the image hover effect
                     className="group absolute inset-0 overflow-hidden bg-gray-200 shadow-xl ring-1 ring-black/5 origin-center select-none"
                   >
                     <Image
