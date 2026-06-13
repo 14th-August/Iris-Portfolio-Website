@@ -1,4 +1,4 @@
-export const DEFAULT_PHOTOS: string[] = [
+export const aboutPhotos: string[] = [
   "/photos/personal/IMG_2561.JPG",
   "/photos/personal/IMG_1269.JPG",
   "/photos/personal/IMG_3857.JPG",

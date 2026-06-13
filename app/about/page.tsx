@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { aboutPhotos } from "@/utils/about";
+import { aboutPhotos } from "../../utils/about";
 
 interface IntroCardProps {
   images?: string[];
