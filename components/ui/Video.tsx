@@ -14,7 +14,7 @@ export default function VideoHero() {
         loop
         playsInline
         poster="/photos/personal/IMG_0177.JPG"
-        src="/photos/IrisVideoV3.mp4"
+        src="/photos/placeholder.jpg"
       />
 
       <div className="absolute top-0 left-0 w-full h-full bg-black/45 -z-10 select-none" />
