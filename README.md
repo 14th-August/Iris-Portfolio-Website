@@ -24,4 +24,6 @@ A Freelance SEO website for a makeup artist who I know. The project will also su
 
 ## Deployed on Vercel
 
+Can find link at irisbeauty.art
+
 
